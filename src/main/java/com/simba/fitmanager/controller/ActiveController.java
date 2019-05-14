@@ -26,11 +26,17 @@ public class ActiveController {
         return result;
     }
 
-    @PostMapping
+    @PostMapping("/{num1}/{num2}")
     public  String activeByTwo(@PathVariable(value = "num1") String num1,@PathVariable(value = "num2") String num2){
         System.out.println(num1+"+"+num2);
         String result = activeService.activeByTwo(num1,num2);
 
+        //### url: localhost:8080/active/{num1}/{num2}
+        //接口返回类型 string
+        //返回0，激活码不正确，激活失败
+        //返回1，激活成功
+        //返回2，请将激活码填入正确的输入框中
+        //第一个输入框填备件，第二个输入框填已激活件
         return result;
     }
 

@@ -27,7 +27,7 @@ public class ActiveServiceImpl implements ActiveService {
             return "0";
         }
         else{
-            System.out.println(fitList.get(0).getState().toString());
+//            System.out.println(fitList.get(0).getState().toString());
             switch (fitList.get(0).getState()){
                 case "0":
                     //返回1，是正常配件，激活成功
@@ -48,6 +48,32 @@ public class ActiveServiceImpl implements ActiveService {
     // 通过两个激活码，激活配件
     @Override
     public String activeByTwo(String num1, String num2) {
-        return null;
+        FitExample fitExample1 = new FitExample();
+        FitExample.Criteria fitExampleCriteria1 = fitExample1.createCriteria();
+        fitExampleCriteria1.andFitNumEqualTo(num1);
+        List<Fit> fitList1 = fitMapper.selectByExample(fitExample1);
+//        Fit fitNum1 = fitList1.get(0);
+
+        FitExample fitExample2 = new FitExample();
+        FitExample.Criteria fitExampleCriteria2 = fitExample2.createCriteria();
+        fitExampleCriteria2.andFitNumEqualTo(num2);
+        List<Fit> fitList2 = fitMapper.selectByExample(fitExample2);
+//        Fit fitNum2 = fitList2.get(0);
+        System.out.println(fitList1.get(0).getState()+"+"+fitList2.get(0).getState());
+
+        if (fitList1.size() == 0 || fitList2.size() == 0){
+            //返回0，激活码不正确，激活失败
+            return "0";
+        }
+        else if (Integer.parseInt(fitList1.get(0).getState()) == 1 && Integer.parseInt(fitList2.get(0).getState()) == 2){
+            //返回1，激活成功
+            return "1";
+        }
+        else{
+            //返回2，请将激活码填入正确的输入框中
+            //第一个输入框填备件，第二个输入框填已激活件
+            return "2";
+        }
+
     }
 }

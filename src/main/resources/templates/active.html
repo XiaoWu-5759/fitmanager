@@ -7,15 +7,17 @@
 </head>
 <body>
 <input id="fitNum" type="text">
+<input id="fitNum2" type="text">
 <button onclick="active()">提交</button>
 
 <script>
     function active() {
         var num = document.getElementById("fitNum").value;
+        var num2 = document.getElementById("fitNum2").value;
         // alert(num);
         $.ajax(
             {
-                url: "/active/"+num,
+                url: "/active/"+num + "/" +num2,
                 method:"POST",
                 success: function (result) {
                     alert(result);
