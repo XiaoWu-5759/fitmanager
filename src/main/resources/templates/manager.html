@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/jquery.min.js"></script>
+</head>
+
+<body>
+
+<form id="fileForm" method="POST" enctype="multipart/form-data">
+    <input id="file" type="file" name="file"/>
+    <input id="btnSubmitFile" type="button" value="upload file to /upload"/>
+</form>
+
+<div id="outputDiv"></div>
+
+<input id="state" type="text">
+<button id="update">更新数据</button>
+
+
+
+
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#btnSubmitFile").click(function () {
+            var form = new FormData(document.getElementById("fileForm"));
+            $.ajax({
+                url: "/manager/upload",
+                type: "post",
+                data: form,  // 这里就是excel文件数据
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    $("#outputDiv").html(data);
+                },
+                error: function(e) {
+                    console.log(e);
+                }
+            });
+        });
+
+        $("#update").click(
+            function () {
+                var fitInfo = {
+                    fitId: 1,
+                    state: $("#state").val()
+                };
+                $.ajax(
+                    {
+                        url: "/manager/update",
+                        method: "POST",
+                        data: JSON.stringify(fitInfo),
+                        contentType:"application/json",
+                        success: function (result) {
+                            alert(JSON.stringify(result));
+                        }
+                    }
+                );
+            }
+        );
+    });
+
+</script>
+
+</body>
+</html>

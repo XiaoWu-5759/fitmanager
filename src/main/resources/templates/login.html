@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/jquery.min.js"></script>
+</head>
+<body>
+<input id="name" type="text">
+<input id="pwd" type="text">
+<button onclick="login()">提交</button>
+
+<script>
+    function active() {
+        var name = document.getElementById("name").value;
+        var pwd = document.getElementById("pwd").value;
+        // alert(num);
+        $.ajax(
+            {
+                url: "/login/"+name + "/" +pwd,
+                method:"POST",
+                success: function (result) {
+                    alert(result);
+                }
+            }
+        )
+    }
+</script>
+</body>
+</html>

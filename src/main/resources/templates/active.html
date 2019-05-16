@@ -6,18 +6,22 @@
     <script src="/js/jquery.min.js"></script>
 </head>
 <body>
-<input id="fitNum" type="text">
+<input id="fitNum1" type="text">
 <input id="fitNum2" type="text">
-<button onclick="active()">提交</button>
+<button onclick="active()">提交1</button>
+
+<!--<input id="fitNum" type="text">-->
+<!--<button id="One">提交2</button>-->
+
 
 <script>
     function active() {
-        var num = document.getElementById("fitNum").value;
+        var num1 = document.getElementById("fitNum1").value;
         var num2 = document.getElementById("fitNum2").value;
         // alert(num);
         $.ajax(
             {
-                url: "/active/"+num + "/" +num2,
+                url: "/active/"+num1 + "/" +num2,
                 method:"POST",
                 success: function (result) {
                     alert(result);
@@ -25,6 +29,21 @@
             }
         )
     }
+
+    // $(function () {
+    //   $("#One").click()
+    //       $.ajax(
+    //           {
+    //               url: "/active/"+$("#fitNum").val(),
+    //               method:"POST",
+    //               success: function (result) {
+    //                   alert(result);
+    //               }
+    //           }
+    //       );
+    //
+    //
+    // })
 
 </script>
 </body>

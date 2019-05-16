@@ -15,3 +15,15 @@ spring:
     thymeleaf:
             mode: LEGACYHTML5
             cache: false
+
+jwt:
+    header: Authorization
+    secret: mySecret
+    expiration: 10
+    tokenHead: Bearer
+    route:
+        authentication.path: auth/login
+        authentication.refresh: auth/refresh
+        authentication.register: "auth/register"
+
+
