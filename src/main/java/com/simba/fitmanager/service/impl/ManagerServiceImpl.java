@@ -17,12 +17,13 @@ public class ManagerServiceImpl implements ManagerService {
     private FitMapper fitMapper;
 
     Fit addFit = new Fit();
+
     @Override
     public String addFitList(String destFileName) throws Exception {
         List<Fit> fitList = new ArrayList<>();
         fitList = ExcelUtil.importExcel(destFileName);
 //        System.out.println(fitList.size());
-        for (int i = 0;i<fitList.size(); i++){
+        for (int i = 0; i < fitList.size(); i++) {
 //            System.out.println(i);
 //            System.out.println(fitList.get(i));
             addFit = fitList.get(i);
@@ -34,12 +35,11 @@ public class ManagerServiceImpl implements ManagerService {
             FitExample.Criteria fitExampleCriteria = fitExample.createCriteria();
             fitExampleCriteria.andFitNumEqualTo(addFit.getFitNum());
             List<Fit> fitList1 = fitMapper.selectByExample(fitExample);
-            if (fitList1.size() != 0){
+            if (fitList1.size() != 0) {
                 addFit.setFitId(fitList1.get(0).getFitId());
                 fitMapper.updateByPrimaryKeySelective(addFit);
                 System.out.println("更新一条数据");
-            }
-            else {
+            } else {
                 fitMapper.insertSelective(addFit);
                 System.out.println("插入一条数据");
             }
@@ -49,6 +49,7 @@ public class ManagerServiceImpl implements ManagerService {
 
     /**
      * 查询全部数据
+     *
      * @return
      */
     @Override
@@ -63,6 +64,7 @@ public class ManagerServiceImpl implements ManagerService {
 
     /**
      * 更新配件信息
+     *
      * @param fit
      * @return
      */
@@ -72,7 +74,7 @@ public class ManagerServiceImpl implements ManagerService {
 //        FitExample fitExample = new FitExample();
 //        FitExample.Criteria fitExampleCriteria = fitExample.createCriteria();
         int result = fitMapper.updateByPrimaryKeySelective(fit);
-        if(result == 1){
+        if (result == 1) {
             // 修改成功
             return "1";
         }

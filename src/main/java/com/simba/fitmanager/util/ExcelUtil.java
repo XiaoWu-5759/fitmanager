@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class ExcelUtil {
 
-    public static List<Fit> importExcel(String fileName) throws Exception{
+    public static List<Fit> importExcel(String fileName) throws Exception {
 
         try {
 //            POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream("d:/test.xls"));    
@@ -35,7 +35,6 @@ public class ExcelUtil {
 //            cellStyle = cell.getCellStyle();  //得到单元格样式  
 
 
-
             List<Fit> fitList = new ArrayList<>();
 
             InputStream inputStream = new FileInputStream(fileName);
@@ -43,7 +42,7 @@ public class ExcelUtil {
             XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(0);
 //            XSSFRow firstRow = xssfSheet.getRow(0);
 //            System.out.println(xssfSheet.getLastRowNum());
-            for (int i =1; i <= xssfSheet.getLastRowNum(); i++){
+            for (int i = 1; i <= xssfSheet.getLastRowNum(); i++) {
                 XSSFRow xssfRow = xssfSheet.getRow(i);
 //                int minCell = xssfRow.getFirstCellNum();
 //                int maxCell = xssfRow.getLastCellNum();
@@ -64,8 +63,7 @@ public class ExcelUtil {
             }
             System.out.println("解析成功");
             return fitList;
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return null;

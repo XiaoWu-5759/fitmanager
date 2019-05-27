@@ -25,13 +25,12 @@ public class ActiveServiceImpl implements ActiveService {
         fitExampleCriteria.andFitNumEqualTo(num);
         List<Fit> fitList = fitMapper.selectByExample(fitExample);
 
-        if ( fitList.size() == 0) {
+        if (fitList.size() == 0) {
             // 配件码不存在，返回0
             return "0";
-        }
-        else{
+        } else {
 //            System.out.println(fitList.get(0).getState().toString());
-            switch (fitList.get(0).getState()){
+            switch (fitList.get(0).getState()) {
                 case "0":
                     Fit updateFit = fitList.get(0);
                     updateFit.setState("2");
@@ -65,18 +64,17 @@ public class ActiveServiceImpl implements ActiveService {
         fitExampleCriteria2.andFitNumEqualTo(num2);
         List<Fit> fitList2 = fitMapper.selectByExample(fitExample2);
 //        Fit fitNum2 = fitList2.get(0);
-        System.out.println(fitList1.get(0).getState()+"+"+fitList2.get(0).getState());
+        System.out.println(fitList1.get(0).getState() + "+" + fitList2.get(0).getState());
 
         // 转义字符 需要转义
 //        String[] col1 = fitList1.get(0).getState().split("\\.");
 //        String[] col2 = fitList2.get(0).getState().split("\\.");
 //        System.out.println(col1.length);
 //        System.out.println(col1[0]);
-        if (fitList1.size() == 0 || fitList2.size() == 0){
+        if (fitList1.size() == 0 || fitList2.size() == 0) {
             //返回0，激活码不正确，激活失败
             return "0";
-        }
-        else if (Double.valueOf(fitList1.get(0).getState()) == 1.0 && Double.valueOf(fitList2.get(0).getState()) == 2.0){
+        } else if (Double.valueOf(fitList1.get(0).getState()) == 1.0 && Double.valueOf(fitList2.get(0).getState()) == 2.0) {
 //            SimpleDateFormat sdf = new SimpleDateFormat();// 格式化时间
 //            sdf.applyPattern("yyyy-MM-dd HH:mm:ss");
 //            Date date = new Date();// 获取当前时间 sdf.format(date)
@@ -85,7 +83,7 @@ public class ActiveServiceImpl implements ActiveService {
             Fit updateFit2 = fitList2.get(0);
             Timestamp activeTime = new Timestamp(updateFit2.getActiveTime().getTime());
             updateFit2.setState("3");
-            fitMapper.updateByExample(updateFit2,fitExample2);
+            fitMapper.updateByExample(updateFit2, fitExample2);
 
 
             // 更改备件属性
@@ -94,12 +92,11 @@ public class ActiveServiceImpl implements ActiveService {
             Fit updateFit1 = fitList1.get(0);
             updateFit1.setState("2");
             updateFit1.setActiveTime(activeTime);
-            fitMapper.updateByExample(updateFit1,fitExample1);
+            fitMapper.updateByExample(updateFit1, fitExample1);
             //返回1，激活成功
             return "1";
 
-        }
-        else{
+        } else {
             //返回2，请将激活码填入正确的输入框中
             //第一个输入框填备件，第二个输入框填已激活件
             return "4";

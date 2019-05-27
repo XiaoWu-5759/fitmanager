@@ -1,6 +1,6 @@
 
 server:
-  port: 8080
+  port: 8013
 
 mybatis:
   mapperLocations: classpath:com/simba/fitmanager/mapping/*.xml
@@ -12,18 +12,21 @@ spring:
         username: root
         password: 123456
         driver-class-name: com.mysql.jdbc.Driver
+    jpa:
+        show-sql: true
+        hibernate.ddl-auto: update
     thymeleaf:
             mode: LEGACYHTML5
             cache: false
 
-jwt:
-    header: Authorization
-    secret: mySecret
-    expiration: 10
-    tokenHead: Bearer
-    route:
-        authentication.path: auth/login
-        authentication.refresh: auth/refresh
-        authentication.register: "auth/register"
+#jwt:
+#    header: Authorization
+#    secret: mySecret
+#    expiration: 10
+#    tokenHead: Bearer
+#    route:
+#        authentication.path: auth/login
+#        authentication.refresh: auth/refresh
+#        authentication.register: "auth/register"
 
 

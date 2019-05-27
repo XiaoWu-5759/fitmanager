@@ -28,16 +28,16 @@ public class ManagerController {
     @Autowired
     private ManagerService managerService;
 
-    @RequestMapping(value = "/upload",method = RequestMethod.POST)
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String upload(@RequestParam("file") MultipartFile file) throws Exception {
-        if (file.isEmpty()){
+        if (file.isEmpty()) {
             //上传失败
             return "0";
         }
         // 前端上传的excel文件处理
         String fileName = file.getOriginalFilename();
-        String dir=System.getProperty("user.dir");
-        String destFileName=dir+File.separator +"uploadedfiles_"+fileName;
+        String dir = System.getProperty("user.dir");
+        String destFileName = dir + File.separator + "uploadedfiles_" + fileName;
         System.out.println(destFileName);
         File destFile = new File(destFileName);
         file.transferTo(destFile);
@@ -50,14 +50,14 @@ public class ManagerController {
 
     // 返回的是列表类型的 json数据
     @RequestMapping(value = "/show")
-    public List<Fit> show(){
+    public List<Fit> show() {
         List<Fit> response = new ArrayList<>();
         response = managerService.showFitList();
         return response;
     }
 
     @RequestMapping(value = "/update")
-    public String update(@RequestBody Fit fit){
+    public String update(@RequestBody Fit fit) {
         String response = null;
         response = managerService.updateFitList(fit);
         return response;

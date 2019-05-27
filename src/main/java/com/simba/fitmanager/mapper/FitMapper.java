@@ -2,7 +2,9 @@ package com.simba.fitmanager.mapper;
 
 import com.simba.fitmanager.dao.Fit;
 import com.simba.fitmanager.dao.FitExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface FitMapper {

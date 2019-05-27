@@ -19,9 +19,6 @@
 <button id="update">更新数据</button>
 
 
-
-
-
 <script type="text/javascript">
 
     $(function () {
@@ -34,10 +31,10 @@
                 data: form,  // 这里就是excel文件数据
                 processData: false,
                 contentType: false,
-                success: function(data) {
+                success: function (data) {
                     $("#outputDiv").html(data);
                 },
-                error: function(e) {
+                error: function (e) {
                     console.log(e);
                 }
             });
@@ -54,7 +51,7 @@
                         url: "/manager/update",
                         method: "POST",
                         data: JSON.stringify(fitInfo),
-                        contentType:"application/json",
+                        contentType: "application/json",
                         success: function (result) {
                             alert(JSON.stringify(result));
                         }

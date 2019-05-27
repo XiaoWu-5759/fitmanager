@@ -12,7 +12,7 @@ public class ActiveController {
     @Autowired
     private ActiveService activeService;
 
-    @RequestMapping(value = "/{num1}",method = RequestMethod.POST,produces = "application/json")
+    @RequestMapping(value = "/{num1}", method = RequestMethod.POST, produces = "application/json")
     public String activeByOne(@PathVariable("num1") String num) {
         System.out.println(num);
         String response = activeService.activeByOne(num);
@@ -24,10 +24,10 @@ public class ActiveController {
         return response;
     }
 
-    @RequestMapping(value = "/{num1}/{num2}",method = RequestMethod.POST,produces = "application/json")
-    public  String activeByTwo(@PathVariable("num1") String num1,@PathVariable("num2") String num2){
-        System.out.println(num1+"+"+num2);
-        String response = activeService.activeByTwo(num1,num2);
+    @RequestMapping(value = "/{num1}/{num2}", method = RequestMethod.POST, produces = "application/json")
+    public String activeByTwo(@PathVariable("num1") String num1, @PathVariable("num2") String num2) {
+        System.out.println(num1 + "+" + num2);
+        String response = activeService.activeByTwo(num1, num2);
 
         //### url: localhost:8080/active/{num1}/{num2}
         //接口返回类型 string

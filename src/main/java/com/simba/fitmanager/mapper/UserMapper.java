@@ -2,7 +2,9 @@ package com.simba.fitmanager.mapper;
 
 import com.simba.fitmanager.dao.User;
 import com.simba.fitmanager.dao.UserExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
